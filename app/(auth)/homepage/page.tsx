@@ -17,22 +17,6 @@ export default function RegistrationPage() {
   const [serverError, setServerError] = useState("");
 
   async function getUserProfile() {
-    setIsLoading(true);
-    setServerError(""); // Reset error before fetching
-    try {
-      const data = await fetchWithToken(
-        "http://localhost:8080/profile/suyasht786@gmail.com"
-      );
-      setProfileData(data); // Store the fetched data in state
-      console.log("Profile data:", data);
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-      setServerError("Failed to fetch profile data. Please try again.");
-    } finally {
-      setIsLoading(false); // Ensure loading stops after fetch attempt
-    }
-  }
-  async function getUserProfile2() {
     try {
       const data = await fetchWithToken("http://localhost:8080/profile/suyasht786@gmail.com");
       console.log("Profile data:", data);
@@ -46,7 +30,7 @@ export default function RegistrationPage() {
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>
-            <Button onClick={ getUserProfile2} disabled={isLoading}>
+            <Button onClick={ getUserProfile} disabled={isLoading}>
               {isLoading ? "Loading..." : "Load Profile"}
             </Button>
           </CardTitle>
